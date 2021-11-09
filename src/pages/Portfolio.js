@@ -1,93 +1,90 @@
-
-import {Ul, Li, H3, Div, Img} from "../styles/Portfolio.styled"
-
-const Portfolio = ( {coinData} ) => {
-
-  // when cryptos are purchased name and amount will be updated
-
-  const wallet = {
-    usd : {symbol: 'usd', amount: 640.00},
-    btc : {symbol:'btc', amount: .05},
-    eth : {symbol:'eth', amount: .3}
-  }
-  
+import { Ul, Li, H3, Div, Img } from "../styles/Portfolio.styled"
+import { useNavigate } from "react-router-dom";
+const Portfolio = ({ coinData, user }) => {
+  const wallet = user.portfolio;
   let coinValues = [];
-  
   const portfolioBalance = () => {
     // coinBalance + usdBalance
     const coinValues = coinData.map(coin => {
-      let id = coin.symbol
+      let id = coin.symbol.toUpperCase();
       if (wallet.hasOwnProperty(id)) {
-        return wallet[`${id}`].amount * coin.current_price
+        return wallet[`${id}`] * coin.current_price
       } else {
         return 0;
       }
     })
     const sum = coinValues.reduce((a, b) => a + b, 0);
-    console.log(coinValues)
-    return sum + wallet.usd.amount;
+    // console.log(coinValues)
+    const balance = sum + wallet.USD;
+    return balance;
   };
-
-
-  const coinBalances = () => {
-    // return coinAmount x coinPrice
-    // return props.coinData.id;
-  }
-
   // calculate prices of owned assets
-
+  // const removeUser = () =>{
+  //   handleDeleteUser(user.id);
+  // }
+  const navigate = useNavigate();
+  const handleDeleteUser = async () => {
+    alert('User is being deleted this user')
+    console.log(user);
+    try {
+      const URL = `https://hidden-journey-86205.herokuapp.com/user/${user.id}`
+      await fetch(URL, {
+        method: 'DELETE',
+      }).then(res => res.json());
+    } catch (error) {
+      console.log(error)
+    }
+    navigate("/");
+  }
   const loaded = () => {
-
-
-
-  return (
+    return (
       <div>
         <h1>Portfolio Balance</h1>
-        <p>{portfolioBalance()}</p>
+        <p>{`$${portfolioBalance()}`}</p>
         <Div>
           <Ul>
-            <Li> 
+            <Li>
               <H3>USD</H3>
             </Li>
             <Li>
-              <H3>{`$${wallet.usd.amount}`}</H3>
+              <H3>{`$${wallet.USD}`}</H3>
             </Li>
           </Ul>
         </Div>
         <div>
           {coinData.map(coin => {
-            if (wallet.hasOwnProperty(coin.symbol)) {
-              let id = coin.symbol
+            let id = coin.symbol.toUpperCase()
+            if (wallet.hasOwnProperty(id)) {
               return (
                 <div>
                   <Ul>
                     <Li>
-                      <Img src={coin.image} alt=""/>
+                      <Img src={coin.image} alt="" />
                     </Li>
                     <Li>
                       <H3>{coin.symbol.toUpperCase()}</H3>
                     </Li>
+                    <H3>{wallet[`${id}`]}</H3>
                     <Li>
                     </Li>
                     <Li>
-                      <H3>{`$${wallet[`${id}`].amount * coin.current_price}`}</H3>
+                      <H3>{`$${wallet[`${id}`] * coin.current_price}`}</H3>
                     </Li>
                   </Ul>
                 </div>
               )
             }
           })}
-          <p>{coinBalances}</p>
         </div>
+        <button id="delete" onClick={handleDeleteUser}>
+          DELETE USER
+        </button>
       </div>
     )
   }
-
   const loading = () => {
     return <h1>Loading...</h1>
   }
-  
   return coinData ? loaded() : loading();
 }
-
 export default Portfolio;

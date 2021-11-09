@@ -6,7 +6,9 @@ setUser = A function for setting the current session username
 */
 import Form from "../components/Form";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Div, P, H4 } from "../styles/Login.styled"
+
 function NewUser(props) {
     //for redirecting
     let navigate = useNavigate()
@@ -35,18 +37,22 @@ function NewUser(props) {
         }else{
             //if user is created succesfully set the user to the user sent back by the server then redirect to portfolio
             props.setUser(response)
-            navigate("/portfolio")
+            navigate("/dashboard")
         }
     }    
 
 
     return ( 
-        <>
+        <Div>
             {/* if there is an error then display it within an h3 tag with id errormessage */}
             {(error)? <h3 id="errormessage">{error}</h3>:null}
             {/* if loading then display loading else display the form  */}
             {(loading)?<h3 id="loadingmessage">loading</h3>:<Form onSubmit={attemptCreateNewUser}/>}
-        </>
+            <H4>New User?</H4>
+            <P>
+            <Link to={`/CreateAccount`}>Create Account</Link>
+            </P>
+        </Div>
      );
 }
 

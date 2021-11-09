@@ -1,9 +1,28 @@
 import { Link } from "react-router-dom"
 
-const Dashboard = ({ coinData }) => {
+const Dashboard = ({ coinData, user }) => {
 
   const loaded = () => {
-    console.log(coinData)
+
+    const wallet = user.portfolio;
+
+    let coinValues = [];
+    
+    const portfolioBalance = () => {
+      // coinBalance + usdBalance
+      const coinValues = coinData.map(coin => {
+        let id = coin.symbol.toUpperCase();
+        if (wallet.hasOwnProperty(id)) {
+          return wallet[`${id}`] * coin.current_price
+        } else {
+          return 0;
+        }
+      })
+      const sum = coinValues.reduce((a, b) => a + b, 0);
+      // console.log(coinValues)
+      const balance = sum + wallet.USD;
+      return balance;
+    };
 
     const coins = coinData.map(coin => {
       return (
@@ -19,6 +38,7 @@ const Dashboard = ({ coinData }) => {
       <div>
         <Link to="/portfolio">
           <p>Portfolio Balance</p>
+          <p>{`$${portfolioBalance()}`}</p>
         </Link>
         
         <h1>Coin Listings</h1>
