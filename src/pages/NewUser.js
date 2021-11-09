@@ -7,6 +7,8 @@ setUser = A function for setting the current session username
 import Form from "../components/Form";
 import { useState } from "react";
 import { useNavigate,Link } from "react-router-dom";
+import { P, Main } from "../styles/NewUser.styled"
+
 function NewUser(props) {
     //for redirecting
     let navigate = useNavigate()
@@ -41,13 +43,15 @@ function NewUser(props) {
 
 
     return ( 
-        <>
+        <Main>
             {/* if there is an error then display it within an h3 tag with id errormessage */}
             {(error)? <h3 id="errormessage">{error}</h3>:null}
             {/* if loading then display loading else display the form  */}
             {(loading)?<h3 id="loadingmessage">loading</h3>:<Form onSubmit={attemptCreateNewUser}/>}
+            <P>
             <Link to={`/`}>Back To Login</Link>
-        </>
+            </P>
+        </Main>
      );
 }
 

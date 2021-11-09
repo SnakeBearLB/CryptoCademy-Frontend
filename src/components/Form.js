@@ -8,6 +8,7 @@ onSubmit = A function to run upon submission of the form, this is ran within the
 setUser = A function for setting the current session username*/
 
 import { useState } from "react"
+import { Div, Input } from "../styles/Form.styled"
 
 const Form = (props) => {
   //~~~~~~~~~State functions/variables~~~~~~~~~~~~~~~~
@@ -35,8 +36,9 @@ const Form = (props) => {
 
   return (
     <div className="form">
+      <Div>
       <form onSubmit={handleSubmit}>
-        <input
+        <Input
           type="text"
           value={Form.userName}
           name="userName"
@@ -44,7 +46,7 @@ const Form = (props) => {
           onChange={handleChange}
           required="required"
         />
-        <input
+        <Input
           type="text"
           value={Form.password}
           name="password"
@@ -52,8 +54,9 @@ const Form = (props) => {
           onChange={handleChange}
           required="required"
         />
-        <input type="submit" value="Login"/>
+        <Input type="submit" value="Login"/>
       </form>
+      </Div>
     </div>
   )
 }
