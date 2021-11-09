@@ -12,10 +12,13 @@ export const Ul = styled.ul`
 export const Li = styled.li`
   display: flex;
   align-content: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
 `
 
 export const H3 = styled.h3`
-  margin: 0 auto;
+  margin: auto;
 `
 
 export const Div = styled.div`
@@ -25,4 +28,10 @@ export const Div = styled.div`
 
 export const Img = styled.img`
   width: 50px;
+  margin: auto;
+`
+
+export const CoinDiv = styled.div`
+  display: flex;
+  flex-direction: column;
 `
