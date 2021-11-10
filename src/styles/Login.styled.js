@@ -18,3 +18,15 @@ margin-bottom: -5px;
 export const H4 = styled.h4`
 font-size: 15px;
 `
+
+export const Img = styled.img`
+  width: 400px;
+  margin-right: 30px;
+`
+
+export const ImgDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+`

@@ -7,7 +7,8 @@ setUser = A function for setting the current session username
 import Form from "../components/Form";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Div, P, H4 } from "../styles/Login.styled"
+import { Div, P, H4, Img, ImgDiv } from "../styles/Login.styled"
+import logo from "../logo.svg"
 
 function NewUser(props) {
     //for redirecting
@@ -43,7 +44,12 @@ function NewUser(props) {
 
 
     return ( 
+        <div>
+            <ImgDiv>
+                <Img src={logo}/>
+            </ImgDiv>
         <Div>
+            
             {/* if there is an error then display it within an h3 tag with id errormessage */}
             {(error)? <h3 id="errormessage">{error}</h3>:null}
             {/* if loading then display loading else display the form  */}
@@ -53,6 +59,7 @@ function NewUser(props) {
             <Link to={`/CreateAccount`}>Create Account</Link>
             </P>
         </Div>
+        </div>
      );
 }
 

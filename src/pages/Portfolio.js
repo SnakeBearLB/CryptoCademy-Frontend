@@ -1,4 +1,4 @@
-import { Ul, Li, H3, Div, Img } from "../styles/Portfolio.styled"
+import { Ul, Li, H3, Div, Img, Btn, Div2, H3W, PB, H1 } from "../styles/Portfolio.styled"
 import { useNavigate } from "react-router-dom";
 const Portfolio = ({ coinData, user }) => {
   const wallet = user.portfolio;
@@ -39,8 +39,8 @@ const Portfolio = ({ coinData, user }) => {
   const loaded = () => {
     return (
       <div>
-        <h1>Portfolio Balance</h1>
-        <p>{`$${portfolioBalance()}`}</p>
+        <H1>Portfolio Balance</H1>
+        <PB>{`$${portfolioBalance()}`}</PB>
         <Div>
           <Ul>
             <Li>
@@ -51,34 +51,46 @@ const Portfolio = ({ coinData, user }) => {
             </Li>
           </Ul>
         </Div>
+        <Div2>
         <div>
           {coinData.map(coin => {
             let id = coin.symbol.toUpperCase()
             if (wallet.hasOwnProperty(id)) {
               return (
-                <div>
-                  <Ul>
-                    <Li>
-                      <Img src={coin.image} alt="" />
-                    </Li>
-                    <Li>
-                      <H3>{coin.symbol.toUpperCase()}</H3>
-                    </Li>
-                    <H3>{wallet[`${id}`]}</H3>
-                    <Li>
-                    </Li>
-                    <Li>
-                      <H3>{`$${wallet[`${id}`] * coin.current_price}`}</H3>
-                    </Li>
-                  </Ul>
+                
+                <div className="container">
+                  <div class="row">
+                    <Ul>
+                      <div className="col-sm">
+                        <Li>
+                          <Img src={coin.image} alt="" />
+                          <H3>{coin.symbol.toUpperCase()}</H3>
+                        </Li>
+                      </div>
+                      <div className="col-sm">
+                        <Li>
+                          <H3W>{wallet[`${id}`]}</H3W>
+                        </Li>
+                      </div>
+                      <div className="col-sm">
+                        <Li>
+                          <H3W>{`$${wallet[`${id}`] * coin.current_price}`}</H3W>
+                        </Li>
+                      </div>
+                    </Ul>
+                  </div>
                 </div>
+                
               )
             }
           })}
         </div>
+        </Div2>
+        <Btn>
         <button id="delete" onClick={handleDeleteUser}>
           DELETE USER
         </button>
+        </Btn>
       </div>
     )
   }

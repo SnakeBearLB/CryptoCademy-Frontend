@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom'
 import {Ul, Li, P} from '../styles/Navlinks.styled'
 
 
+
 const Navlinks = ({closeMenu}) => {
+
 
   return (
       <Ul>
@@ -19,6 +21,11 @@ const Navlinks = ({closeMenu}) => {
         <Link to="/about" style={{textDecoration:"none"}}>
           <Li onClick={(closeMenu)}>
             <P>About</P>
+          </Li>
+        </Link>
+        <Link to="/trade" style={{textDecoration:"none"}}>
+          <Li onClick={(closeMenu)}>
+            <P>Trade</P>
           </Li>
         </Link>
       </Ul>

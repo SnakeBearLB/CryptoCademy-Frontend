@@ -6,6 +6,8 @@ user = the current user
 refreshUser = function for refreshing the current users data
 */
 import {useState} from 'react';
+import {Option, Number, Submit,Arrow,Error,Success,Balance,Form, Div, Option1} from '../styles/Trade.styled'
+import Navlinks from '../components/Navlinks'
 function Trade(props) {
     //~~~~~~~~~~~~~~~~~~~~~~~STATE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
@@ -20,7 +22,7 @@ function Trade(props) {
         //the coin which the user wants to trade
         const[sellCoinSymbol, setSellCoinSymbol]=useState("USD")
         //the amount of coin the user wants to trade
-        const[sellAmount, setSellAmount]=useState(0)
+        const[sellAmount, setSellAmount]=useState("")
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //refactors the portfolio into an array
     const portfolio = Object.entries(props.user.portfolio)
@@ -28,10 +30,12 @@ function Trade(props) {
     //~~~~~~~~~~~~~~~~~~FUNCTIONS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //handles changes within the trade amount
     const onSellAmountChange = (event)=>{
+        setError(null)
+        setSuccess(null)
         //if someone tries to enter an amount smaller then 0 and or larger the amount they have to trade then send them an error message
         if(event.target.value < 0 || event.target.value > props.user.portfolio[sellCoinSymbol]){
             setError(`Please enter an amount between 0 and ${props.user.portfolio[sellCoinSymbol]}`)
-            setSellAmount(0)
+            setSellAmount("")
         }else{
             setSellAmount(event.target.value)
         }
@@ -79,36 +83,36 @@ function Trade(props) {
           })
         setLoading(false)
         setSuccess(`Traded ${sellCoinSymbol} ${sellAmount} for ${buyCoinAmount} ${buyCoinSymbol}`)
-        setSellAmount(0)
+        setSellAmount("")
         props.refreshUser()
     }
 
         return(
-            <div>
+            <Div>
             {/* status messages */}
-            {(error)?<h3 id="error">{error}</h3>:null}
-            <h3 id="selectBalance">You currently have {props.user.portfolio[sellCoinSymbol]}  {sellCoinSymbol} available to trade</h3>
-            {(success)?<h3 id="success">{success}</h3>:null}
-                <form onSubmit={handleTrade}>
+            {(error)?<Error>{error}</Error>:null}
+            {(success)?<Success>{success}</Success>:null}
+                <Form onSubmit={handleTrade}>
+                <Balance id="selectBalance">{sellCoinSymbol} Available: {props.user.portfolio[sellCoinSymbol]}</Balance>
                     {/* the select menu for which coin you want to sell */}
-                    <select name="sellCoin" onChange={sellCoinChange}>
+                    <Option name="sellCoin" onChange={sellCoinChange}>
                         {/* if the user any amount of a coin larger then 0 then add to the dropdown */}
                         {portfolio.map(e=>(e[1])?<option value={e[0]}>{e[0]}</option>:null)}
-                    </select>
+                    </Option>
                     
                     {/* the amount of the the selected coin you want to sell */}
-                    <input type="number" name="sellAmount" value={sellAmount} placeholder="Amount to sell" onChange={onSellAmountChange} step="any"/>
+                    <Number type="number" name="sellAmount" value={sellAmount} placeholder="Amount to sell" onChange={onSellAmountChange} step="any"/>                    <Arrow>➝</Arrow>
                     
                     {/* select menu for the coin you want to buy */}
-                    <select name="buyCoin">
+                    <Option1 name="buyCoin">``
                         {portfolio.map(e=><option value={e[0]}>{e[0]}</option>)}
-                    </select>
-                    <input type="submit" value="Submit Trade"/>
-                </form>
-            </div>
+                    </Option1>
+                    <Submit type="submit" value="Submit Trade"/>
+                </Form>
+            </Div>
         )
 
 
 }
 
-export default Trade;
+export default Trade

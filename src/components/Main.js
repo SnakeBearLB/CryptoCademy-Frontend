@@ -5,6 +5,7 @@ import Portfolio from "../pages/Portfolio"
 import Login from "../pages/Login"
 import NewUser from "../pages/NewUser";
 import Trade from "../pages/Trade";
+import Navbar from "./Navbar";
 
 
 const Main = () => {

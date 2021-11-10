@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# CryptoCademy-Project4
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CryptoCadeny is a crypto education website to simulate investing in crypto using fake money, before entering real crypto market.
 
-## Available Scripts
+# How It Works
 
-In the project directory, you can run:
+- As a user, I should be able to land on the login page and create a new user with a password, then on submit Our createUserAttempt function it's called on submit. 
 
-### `yarn start`
+- Our createUserAttemp function then handles the event by checking if the username that it's being created doesn't already exists in our database and if it doesn't, that username with it's information will then be saved in our database.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- As a user, you'll be able to login with your username and password, which then on the login attempt, our loginCheck function would be called.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Our login function then handles the event by checking in our database if there's a user with the fields of username and password that match what's being inputed. Then if password does not match it'll prompt an error.
 
-### `yarn test`
+- As a user, I should be able to login and check my personal portfolio page. I should also be able to pick a spcific coin and trade them.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- as a user, I should be able to delete my acount.
 
-### `yarn build`
+# Technologies Used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- CSS
+- Ruby
+- Rails
+- ElephantSQL
+- Cors
+- Heroku
+- Netlify
+- InvisionApp
+- Trello
+- Google Founds
+- Node
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Wireframes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Screen Shot 2021-11-09 at 5 47 42 PM](https://user-images.githubusercontent.com/82793235/141018125-445764de-f9ef-4a3a-996d-eaf4ad25fc3a.png)
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

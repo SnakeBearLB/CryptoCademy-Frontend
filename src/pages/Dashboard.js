@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { Div, Li, Ul, H3, Title, Img, Price, PLink, PBLink } from "../styles/Dashboard.styled"
 
 const Dashboard = ({ coinData, user }) => {
 
@@ -7,7 +8,7 @@ const Dashboard = ({ coinData, user }) => {
     const wallet = user.portfolio;
 
     let coinValues = [];
-    
+
     const portfolioBalance = () => {
       // coinBalance + usdBalance
       const coinValues = coinData.map(coin => {
@@ -26,27 +27,44 @@ const Dashboard = ({ coinData, user }) => {
 
     const coins = coinData.map(coin => {
       return (
-        <div>
-          <h1>{coin.symbol}</h1>
-          <p>{coin.current_price}</p>
-        </div>
+        <Div >
+          <div className="container">
+            <Ul>
+              <div className="col-sm">
+                <Li>
+                  <Img src={coin.image} alt="" />
+                </Li>
+              </div>
+              <div className="col-sm">
+                <Li>
+                  <H3>{coin.symbol.toUpperCase()}</H3>
+                </Li>
+              </div>
+              <div className="col-sm">
+                <Li>
+                  <Price>{coin.current_price}</Price>
+                </Li>
+              </div>
+            </Ul>
+          </div>
+        </Div>
       )
     })
-    
-    return (
-     <div>
-      <div>
-        <Link to="/portfolio">
-          <p>Portfolio Balance</p>
-          <p>{`$${portfolioBalance()}`}</p>
-        </Link>
-        
-        <h1>Coin Listings</h1>
-        
-        <p>{coins}</p>
 
+    return (
+      <div>
+        <div>
+          <Link to="/portfolio" style={{ textDecoration: "none" }}>
+            <PLink>Portfolio Balance</PLink>
+            <PBLink>{`$${portfolioBalance()}`}</PBLink>
+          </Link>
+
+          <Title>Coin Listings</Title>
+
+          <p>{coins}</p>
+
+        </div>
       </div>
-    </div> 
     )
   };
 

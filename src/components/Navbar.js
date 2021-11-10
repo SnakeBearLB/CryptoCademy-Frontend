@@ -1,10 +1,10 @@
 import Navlinks from './Navlinks'
-import {Hamburger} from '../styles/Navbar.styled'
+import {Hamburger, Div} from '../styles/Navbar.styled'
 import { HiOutlineMenuAlt4 } from 'react-icons/hi'
 import { GrClose } from 'react-icons/gr'
 import {useState} from 'react'
 
-const Navbar = () => {
+const Navbar = ({user}) => {
 
   const [open, setOpen] = useState(false);
 
@@ -17,11 +17,13 @@ const Navbar = () => {
   return (
 
       <nav>
+        <Div>
         <Hamburger>
           {open ? closeIcon : openIcon}
         </Hamburger>
+        </Div>
         <div>
-          {open && <Navlinks closeMenu={closeMenu}/>}
+          {open && <Navlinks closeMenu={closeMenu} user={user}/>}
         </div>
       </nav>
 
